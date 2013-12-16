@@ -16,3 +16,9 @@ In order to configure Rails to use RSpec:
 
 To watch for the heroku's log:
 > `$ heroku logs`
+
+To generate the StaticPages controller (home and help are the actions!):
+> `$ rails generate controller StaticPages home help --no-test-framework`
+
+To undo:
+> `$ rails destroy controller StaticPages home help`
