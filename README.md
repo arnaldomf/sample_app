@@ -22,3 +22,9 @@ To generate the StaticPages controller (home and help are the actions!):
 
 To undo:
 > `$ rails destroy controller StaticPages home help`
+
+To generate the integration test
+> `$ rails generate integration_test static_pages`
+
+To execute the tests:
+> `$ bundle exec rspec spec/requests/static_pages_spec.rb`
