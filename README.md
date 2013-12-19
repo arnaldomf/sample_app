@@ -28,3 +28,7 @@ To generate the integration test
 
 To execute the tests:
 > `$ bundle exec rspec spec/requests/static_pages_spec.rb`
+
+> `$ rails generate controller Users new --no-test-framework`
+
+> `$ rails generate integration_test user_pages`
