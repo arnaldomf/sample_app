@@ -32,3 +32,5 @@ To execute the tests:
 > `$ rails generate controller Users new --no-test-framework`
 
 > `$ rails generate integration_test user_pages`
+
+> `$ rails generate migration add_index_to_users_email`
