@@ -34,3 +34,5 @@ To execute the tests:
 > `$ rails generate integration_test user_pages`
 
 > `$ rails generate migration add_index_to_users_email`
+
+> `$ bundle exec rake test:prepare`
