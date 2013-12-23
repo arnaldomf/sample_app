@@ -36,3 +36,5 @@ To execute the tests:
 > `$ rails generate migration add_index_to_users_email`
 
 > `$ bundle exec rake test:prepare`
+
+> `$ rails generate migration add_password_digest_to_users password_digest:string`
