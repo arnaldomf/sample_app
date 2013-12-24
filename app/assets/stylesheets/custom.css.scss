@@ -1,8 +1,17 @@
 @import "bootstrap";
 
-/* Universal */
 //$lightGray: #999;
 
+/* Mixins, Variables...*/
+$grayMediumLight: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* Universal */
 html {
   overflow-y: scroll;
 }
@@ -98,7 +107,14 @@ footer {
   }
 }
 
-
+/* miscellaneous */
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
 
 
 
