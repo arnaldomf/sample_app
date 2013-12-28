@@ -38,3 +38,5 @@ To execute the tests:
 > `$ bundle exec rake test:prepare`
 
 > `$ rails generate migration add_password_digest_to_users password_digest:string`
+
+> `$ heroku run rake db:migrate`
