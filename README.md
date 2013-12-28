@@ -40,3 +40,7 @@ To execute the tests:
 > `$ rails generate migration add_password_digest_to_users password_digest:string`
 
 > `$ heroku run rake db:migrate`
+
+> `$ rails generate controller Sessions --no-test-framework`
+
+> `$ rails generate integration_test authentication_pages`
