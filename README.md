@@ -44,3 +44,9 @@ To execute the tests:
 > `$ rails generate controller Sessions --no-test-framework`
 
 > `$ rails generate integration_test authentication_pages`
+
+To generate cucumber support files:
+
+> `$ rails generate cucumber:install`
+
+The features directory is for cucumber tests
