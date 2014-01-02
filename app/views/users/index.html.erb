@@ -4,12 +4,10 @@
 <%= will_paginate %>
 
 <ul class="users">
-<% @users.each do |user| %>
-  <li>
-    <%= gravatar_for user, size: 52 %>
-    <%= link_to user.name, user %>
-  </li>
-<% end %>
+<!-- with no string, render uses a partial passing this variable-->
+<!-- rails infers that users is a list of User, and iterates over it
+  rendering the _user partial for each object -->
+  <%= render @users %>
 </ul>
 
 <%= will_paginate %>
