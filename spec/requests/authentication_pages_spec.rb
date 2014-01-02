@@ -47,6 +47,18 @@ describe "Authentication" do
         specify { expect(response).to redirect_to(root_url)}
       end
     end
+    describe "as admin user" do
+      let(:admin_user) {FactoryGirl.create(:admin)}
+
+      before {sign_in admin_user, no_capybara: true}
+      describe "submitting a DELETE request to the user admin" do
+        it "should not change User#count" do
+          counter = User.count
+          delete user_path(admin_user)
+          expect(User.count).to eq(counter)
+        end
+      end
+    end 
     describe "for non-signed-in users" do
       let(:user) {FactoryGirl.create(:user)}
 
