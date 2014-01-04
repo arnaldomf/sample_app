@@ -1,5 +1,6 @@
 class MicropostsController < ApplicationController
   before_action :signed_in_user
+  before_action :correct_user, only: :destroy
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
@@ -12,10 +13,17 @@ class MicropostsController < ApplicationController
     end
   end
   def destroy
+    @micropost.destroy
+    redirect_to root_url
   end
 
 private
   def micropost_params
     params.require(:micropost).permit(:content)
+  end
+  def correct_user
+    # used find_by instead of find, find raises eception if micropost not found
+    @micropost = current_user.microposts.find_by(id: params[:id])
+    redirect_to root_url if @micropost.nil?
   end
 end
