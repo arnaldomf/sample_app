@@ -27,7 +27,8 @@ class User < ActiveRecord::Base
   end
 
   def feed
-    Micropost.where('user_id = ?', id)
+    # Micropost.where('user_id = ?', id)
+    Micropost.from_users_followed_by(self)
   end
 
   def following?(other_user)
@@ -46,5 +47,5 @@ class User < ActiveRecord::Base
     def create_remember_token
       self.remember_token = User.encrypt(User.new_remember_token)
     end
-  
+
 end
