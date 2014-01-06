@@ -34,7 +34,8 @@ group :test do
     gem 'childprocess', '0.3.9'
     gem 'factory_girl_rails', '4.2.1'
     gem 'cucumber-rails', '1.4.0', :require =>false
-    gem 'database_cleaner', github: 'bmabey/database_cleaner'
+#    gem 'database_cleaner', github: 'bmabey/database_cleaner'
+    gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
 end
 
 gem 'sass-rails', '4.0.1'
