@@ -42,6 +42,16 @@ describe "Static pages" do
         it {should have_link("0 following", href: following_user_path(user))}
         it {should have_link("1 followers", href: followers_user_path(user))}
       end
+
+      describe "screen name in the feed item" do
+        let(:other_user) {FactoryGirl.create(:user, screen_name: "other_user")}
+        let!(:micropost) {FactoryGirl.create(:micropost, user: other_user)}
+        before do
+          user.follow!(other_user)
+          visit root_path
+        end
+        it {should have_selector("small", text: "@#{other_user.screen_name}")}
+      end
     end
   end
 

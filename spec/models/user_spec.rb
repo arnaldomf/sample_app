@@ -3,7 +3,8 @@ require 'spec_helper'
 describe User do
 
   before { @user = User.new(name: "Example User", email: "user@example.com",
-                            password: "foobar", password_confirmation: "foobar")}
+                            password: "foobar", password_confirmation: "foobar",
+                            screen_name: "example_user")}
   subject {@user}
 
   it {should respond_to(:name)}
@@ -22,6 +23,7 @@ describe User do
   it {should respond_to(:follow!)}
   it {should respond_to(:unfollow!)}
   it {should respond_to(:followers)}
+  it {should respond_to(:screen_name)}
   it {should be_valid}
   it {should_not be_admin}
 
@@ -33,6 +35,10 @@ describe User do
     it {should be_admin}
   end
 
+  describe "when screen name is not present" do
+    before { @user.screen_name = " "}
+    it {should_not be_valid}
+  end
 
   describe "when name is not present" do
     before { @user.name = " " }
@@ -46,6 +52,12 @@ describe User do
 
   describe "when name is too long" do
     before { @user.name = "a" * 51}
+    it {should_not be_valid}
+  end
+
+  describe "when screen_name is duplicated" do
+    let(:other_user) {FactoryGirl.create(:user, screen_name: "other_user")}
+    before {@user.screen_name = other_user.screen_name}
     it {should_not be_valid}
   end
 

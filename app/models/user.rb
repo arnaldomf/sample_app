@@ -10,12 +10,16 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships, source: :follower
   before_create :create_remember_token
   before_save { self.email = email.downcase }
+  before_save { self.screen_name = screen_name.downcase }
 
   validates :name, presence: true,length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: {case_sensitive: false}
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
+            uniqueness: {case_sensitive: false}
   has_secure_password
   validates :password, length: {minimum: 6}
+  validates :screen_name, presence: true, format: { with: /\A\w+\z/i},
+            uniqueness: {case_sensitive: true}
 # must have a column named password_digest
 
   def User.new_remember_token

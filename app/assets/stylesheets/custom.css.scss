@@ -141,7 +141,7 @@ aside {
   }
 }
 
-.gravatr {
+.gravatar {
   float: left;
   margin-right: 10px;
 }
@@ -239,5 +239,12 @@ input {
   textarea {
     height: 100px;
     margin-bottom: 5px;
+  }
+}
+
+
+.user {
+  small {
+    color: $grayLight;
   }
 }

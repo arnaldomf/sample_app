@@ -66,7 +66,8 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password,
+                                   :password_confirmation, :screen_name)
     end
     def correct_user
 #      redirect_to root_url if current_user.id != params[:id]
