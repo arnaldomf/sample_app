@@ -9,6 +9,7 @@ describe Micropost do
   it {should respond_to(:content)}
   it {should respond_to(:user_id)}
   it {should respond_to(:user)}
+  it {should respond_to(:in_reply_to)}
   its(:user) {should eq user }
 
   it {should be_valid}
@@ -24,5 +25,13 @@ describe Micropost do
   describe "with content that is too long" do
     before { @micropost.content = "a" * 141}
     it {should_not be_valid}
+  end
+  describe "when a user reply to another user" do
+    let(:other_user) {FactoryGirl.create(:user, screen_name: "other_user")}
+    before do
+      @micropost.content = "@#{other_user.screen_name} Lorem ipsum"
+      @micropost.save
+    end
+    its(:in_reply_to) {should eq other_user.id}
   end
 end

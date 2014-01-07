@@ -1,7 +1,15 @@
 module MicropostsHelper
 
-  def wrap(content)
-    sanitize(raw(content.split.map{|s| wrap_long_string(s)}.join(' ')))
+  def wrap(micropost)
+    if micropost.in_reply_to?
+      content = micropost.content.split
+      at_str = content[0]
+      content[0] = link_to at_str, user_path(micropost.in_reply_to)
+      micropost.content = content.join(' ')
+      puts micropost.content
+    end
+    #sanitize(raw(micropost.content.split.map{|s| wrap_long_string(s)}.join(' ')))
+    sanitize(raw(micropost.content))
   end
 
 private
