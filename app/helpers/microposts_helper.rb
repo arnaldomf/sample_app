@@ -1,15 +1,26 @@
 module MicropostsHelper
 
-  def wrap(micropost)
-    if micropost.in_reply_to?
-      content = micropost.content.split
-      at_str = content[0]
-      content[0] = link_to at_str, user_path(micropost.in_reply_to)
-      micropost.content = content.join(' ')
-      puts micropost.content
+  def micropost_account_link(account, in_reply_to)
+    if in_reply_to
+      link_to account, user_path(in_reply_to)
+    else
+      user = User.find_by(screen_name: account[1 .. -1])
+      if user
+        link_to account, user_path(user)
+      else
+        wrap_long_string account
+      end
     end
-    #sanitize(raw(micropost.content.split.map{|s| wrap_long_string(s)}.join(' ')))
-    sanitize(raw(micropost.content))
+  end
+
+  def wrap(micropost)
+    sanitize(raw(micropost.content.split.map do |s|
+      if s.start_with?('@')
+        micropost_account_link(s, micropost.in_reply_to)
+      else
+        wrap_long_string(s)
+      end
+    end.join(' ')))
   end
 
 private
