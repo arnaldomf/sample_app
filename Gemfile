@@ -10,7 +10,6 @@ gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 
 group :development do
-    gem 'puma'
     gem 'sqlite3'
     gem 'rspec-rails', '2.13.1'
     gem 'guard-rspec', '2.5.0'

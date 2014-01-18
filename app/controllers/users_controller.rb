@@ -8,11 +8,7 @@ class UsersController < ApplicationController
     #User.find(params[:id]).destroy
     @user.destroy
     flash[:success] = "User deleted."
-    # to make a remote call using AJAX, because of this Flash message won't work properly
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.js
-    end
+    redirect_to users_url
   end
 
   def index
@@ -22,13 +18,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
-    respond_to do |format|
-      format.html
-      format.json do
-        render json: @user.to_json(include: :microposts, except: [:password_digest, :remember_token]),
-          status: :created, location: @user
-      end
-    end
   end
 
   def new
