@@ -1,0 +1,13 @@
+<% provide(:title, 'Direct Messages') %>
+<h1><%= current_user.screen_name %>'s DMs</h1>
+
+<%# will_paginate %>
+
+<ul class="users">
+<!-- with no string, render uses a partial passing this variable-->
+<!-- rails infers that users is a list of User, and iterates over it
+  rendering the _user partial for each object -->
+  <%= render @messages %>
+</ul>
+
+<%# will_paginate %>

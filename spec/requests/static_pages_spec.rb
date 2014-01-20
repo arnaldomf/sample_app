@@ -33,7 +33,7 @@ describe "Static pages" do
         end
       end
 
-      describe "followers/following counts" do
+      describe "messages/followers/following counts" do
         let(:other_user) {FactoryGirl.create(:user)}
         before do
           other_user.follow!(user)
@@ -41,6 +41,7 @@ describe "Static pages" do
         end
         it {should have_link("0 following", href: following_user_path(user))}
         it {should have_link("1 followers", href: followers_user_path(user))}
+        it {should have_link("0 DM's", href: messages_path)}
       end
 
       describe "screen name in the feed item" do

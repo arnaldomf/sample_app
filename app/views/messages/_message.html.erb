@@ -1,0 +1,7 @@
+<li>
+  <%= gravatar_for message.sender, size: 52 %>
+  <%= gravatar_for message.receiver, size: 52 %>
+  <%= link_to message.sender.screen_name, message.sender %>
+  <p><%= message.content %></p>
+  
+</li>

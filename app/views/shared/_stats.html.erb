@@ -12,4 +12,10 @@
     </strong>
     followers
   </a>
+  <a href="<%= messages_path %>">
+    <strong id="dms" class="stat">
+      <%= @user.message_feed.count %>
+    </strong>
+    DM's
+  </a>
 </div>

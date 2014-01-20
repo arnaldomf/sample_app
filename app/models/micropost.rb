@@ -7,6 +7,18 @@ class Micropost < ActiveRecord::Base
 
   REPLY_TO_PATTERN = /\A@(\w+)/
 
+  def self.post_it!(content, user)
+    return_hash = {success: nil, error: nil}
+    post_creator = PostCreator.new
+    post = post_creator.create(content, user)
+    if post.valid?
+      return_hash[:success] = post_creator.success_message
+    else
+      return_hash[:error] = post_creator.error_message
+    end
+    return_hash
+  end
+
   def in_reply_to?
     true if in_reply_to
   end
