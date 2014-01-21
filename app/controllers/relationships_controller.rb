@@ -4,6 +4,7 @@ class RelationshipsController < ApplicationController
   def create
     @user = User.find(params[:relationship][:followed_id])
     current_user.follow!(@user)
+    UserMailer.followed_email(@user,current_user).deliver
     respond_to do |format|
       format.html { redirect_to @user }
       # in case of ajax, rails calls a javascript called <action>.js.erb

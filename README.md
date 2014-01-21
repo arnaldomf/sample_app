@@ -53,3 +53,4 @@ The features directory is for cucumber tests
 
 > `$ rails generate model Relationship follower_id:integer followed_id:integer`
 
+> `$ rails generate mailer UserMailer`

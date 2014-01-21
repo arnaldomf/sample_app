@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello <%= @user_followed.name %>!</h1>
+    <p>
+      We are happy to announce that <%= link_to(@user_following.screen_name, @url) %>
+      is following you!<br/>
+    </p>
+    <p>Thanks for existing!</p>
+  </body>
+</html>
