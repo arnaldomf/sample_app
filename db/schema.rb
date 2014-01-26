@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140119231017) do
+ActiveRecord::Schema.define(version: 20140126173528) do
 
   create_table "messages", force: true do |t|
     t.integer  "sender_id"
@@ -54,10 +54,12 @@ ActiveRecord::Schema.define(version: 20140119231017) do
     t.string   "remember_token"
     t.boolean  "admin",           default: false
     t.string   "screen_name"
+    t.integer  "state",           default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
   add_index "users", ["screen_name"], name: "index_users_on_screen_name", unique: true
+  add_index "users", ["state"], name: "index_users_on_state"
 
 end

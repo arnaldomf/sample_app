@@ -6,6 +6,7 @@ FactoryGirl.define do
     sequence(:screen_name) {|n| "person#{n}"}
     password "foobar"
     password_confirmation "foobar"
+    state 1
     factory :admin do
       admin true
     end

@@ -19,10 +19,22 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
             uniqueness: {case_sensitive: false}
   has_secure_password
-  validates :password, length: {minimum: 6}
+  # validates :password, length: {minimum: 6}
+  validate :password_length_validation
   validates :screen_name, presence: true, format: { with: /\A\w+\z/i},
             uniqueness: {case_sensitive: true}
 # must have a column named password_digest
+
+# state machine for user's confirmation
+state_machine initial: :pending do
+  state :pending, value: 0
+  state :confirmed, value: 1
+  state :deleted, value: 2
+
+  event :confirm do
+    transition :pending => :published
+  end
+end
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64
@@ -56,6 +68,13 @@ class User < ActiveRecord::Base
   private
     def create_remember_token
       self.remember_token = User.encrypt(User.new_remember_token)
+    end
+    def password_length_validation
+      if self.new_record?
+        if self.password.nil? or self.password.length < 6
+          errors.add(:password,"is too short (minimum is 6 characters)") 
+        end
+      end
     end
 
 end

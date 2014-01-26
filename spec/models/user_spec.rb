@@ -24,6 +24,10 @@ describe User do
   it {should respond_to(:unfollow!)}
   it {should respond_to(:followers)}
   it {should respond_to(:screen_name)}
+  it {should respond_to(:state)}
+  it {should respond_to(:pending?)}
+  it {should respond_to(:confirm)}
+  it {should respond_to(:confirmed?)}
   it {should be_valid}
   it {should_not be_admin}
 

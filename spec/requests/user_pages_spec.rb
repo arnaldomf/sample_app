@@ -166,7 +166,10 @@ describe "User pages" do
       specify { expect(user.reload.email).to eq new_email }
     end
     describe "with invalid information" do
-      before {click_button "Save changes"}
+      before do
+        fill_in "Name", with: 'a' * 51
+        click_button "Save changes"
+      end
       it { should have_content('error')}
     end
   end
