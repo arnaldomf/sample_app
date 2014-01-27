@@ -1,6 +1,7 @@
 # source: forces rails to look for followed_id in relationship instead of
 # followed_users_id
 class User < ActiveRecord::Base
+  has_one  :confirmation, dependent: :destroy
   has_many :messages, foreign_key: "sender_id"
   has_many :reverse_messages, foreign_key: "receiver_id", class_name: "Message"
   has_many :microposts, dependent: :destroy
@@ -32,7 +33,7 @@ state_machine initial: :pending do
   state :deleted, value: 2
 
   event :confirm do
-    transition :pending => :published
+    transition :pending => :confirmed
   end
 end
 

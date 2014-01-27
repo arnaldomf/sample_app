@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140126173528) do
+ActiveRecord::Schema.define(version: 20140126221532) do
+
+  create_table "confirmations", force: true do |t|
+    t.integer  "user_id"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "confirmations", ["user_id", "code"], name: "index_confirmations_on_user_id_and_code"
+  add_index "confirmations", ["user_id"], name: "index_confirmations_on_user_id", unique: true
 
   create_table "messages", force: true do |t|
     t.integer  "sender_id"

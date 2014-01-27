@@ -72,13 +72,17 @@ describe "User pages" do
       it "should create a user" do
         expect { click_button submit }.to change(User, :count).by(1)
       end
+      it "should create a confirmation" do
+        expect { click_button submit }.to change(Confirmation, :count).by(1)
+      end
       describe "after submission" do
         before {click_button submit}
         let(:user) {User.find_by(email: 'user@example.com')}
 
-        it { should have_link('Sign out')}
-        it { should have_title(user.name)}
-        it {should have_selector('div.alert.alert-success', text: 'Welcome')}
+        # it { should have_link('Sign out')}
+        # it { should have_title(user.name)}
+        it {should have_selector('div.alert.alert-success', text: "Welcome, " +
+          "please click on the confirmation link sent to your email")}
       end
     end
   end

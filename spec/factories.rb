@@ -20,6 +20,10 @@ FactoryGirl.define do
     sender
     receiver
   end
+  factory :confirmation do
+    user
+    code "confirmation"
+  end
 end
 
 

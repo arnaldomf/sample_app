@@ -25,14 +25,14 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      sign_in @user
-      flash[:success] = "Welcome to the Sample App!"
-      UserMailer.welcome_email(@user).deliver
-      redirect_to @user
+    ucb = UserConfirmationBuilder.new(user_params)
+    if ucb.save!
+      flash[:success] = "Welcome, please click on the confirmation link sent " +
+      "to your email"
+      UserMailer.welcome_email(ucb.user, ucb.confirmation).deliver
+      redirect_to root_path
     else
-#      flash[:error] = "Oops... try again!"
+      @user = ucb.user
       render 'new'
     end
   end

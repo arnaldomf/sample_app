@@ -2,32 +2,37 @@ require 'spec_helper'
 
 describe User do
 
-  before { @user = User.new(name: "Example User", email: "user@example.com",
-                            password: "foobar", password_confirmation: "foobar",
-                            screen_name: "example_user")}
+  before do 
+    @user = User.new(name: "Example User", email: "user@example.com",
+      password: "foobar", password_confirmation: "foobar",
+      screen_name: "example_user")
+  end
   subject {@user}
 
+
   it {should respond_to(:name)}
-  it {should respond_to(:email)}
-  it {should respond_to(:password_digest)}
-  it {should respond_to(:password)}
-  it {should respond_to(:password_confirmation)}
-  it {should respond_to(:remember_token)}
-  it {should respond_to(:authenticate)}
-  it {should respond_to(:admin)}
-  it {should respond_to(:microposts)}
   it {should respond_to(:feed)}
-  it {should respond_to(:relationships)}
-  it {should respond_to(:followed_users)}
-  it {should respond_to(:following?)}
-  it {should respond_to(:follow!)}
-  it {should respond_to(:unfollow!)}
-  it {should respond_to(:followers)}
-  it {should respond_to(:screen_name)}
+  it {should respond_to(:email)}
+  it {should respond_to(:admin)}
   it {should respond_to(:state)}
-  it {should respond_to(:pending?)}
+  it {should respond_to(:follow!)}
   it {should respond_to(:confirm)}
+  it {should respond_to(:password)}
+  it {should respond_to(:pending?)}
+  it {should respond_to(:followers)}
+  it {should respond_to(:unfollow!)}
+  it {should respond_to(:microposts)}
+  it {should respond_to(:following?)}
   it {should respond_to(:confirmed?)}
+  it {should respond_to(:screen_name)}
+  it {should respond_to(:confirmation)}
+  it {should respond_to(:authenticate)}
+  it {should respond_to(:relationships)}
+  it {should respond_to(:remember_token)}
+  it {should respond_to(:followed_users)}
+  it {should respond_to(:password_digest)}
+  it {should respond_to(:password_confirmation)}
+  
   it {should be_valid}
   it {should_not be_admin}
 

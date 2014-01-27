@@ -6,7 +6,7 @@ SampleApp::Application.routes.draw do
     member do
       get :following, :followers
     end
-    # resources :confirmations
+    resources :confirmations, only: [:show]
   end
   resources :sessions,      only: [:new,    :create,  :destroy]
   resources :messages,      only: [:create, :destroy, :index]
