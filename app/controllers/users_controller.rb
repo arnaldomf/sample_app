@@ -17,7 +17,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
+    respond_to do |format|
+      format.html { @microposts = @user.microposts.paginate(page: params[:page]) }
+      format.rss  { @microposts = @user.microposts }
+    end
   end
 
   def new

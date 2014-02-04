@@ -13,6 +13,7 @@ def make_users
                 password: "foobar",
                 password_confirmation: "foobar",
                 screen_name: "exampleuser",
+                state: 1,
                 admin: true)
   99.times do |n|
     name = Faker::Name.name
